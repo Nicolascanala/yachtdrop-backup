@@ -1,10 +1,11 @@
-import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 // IMPORT OBJECTS
 import LocationTag from './objects/LocationTag';
 import SearchInput from './objects/SearchInput';
 import CartLink from './objects/CartLink';
+import CartMenu from '@components/CartMenu/CartMenu';
 
 const StyledSearchBar = styled.div`
   margin-top: 52px;
@@ -19,12 +20,15 @@ const StyledSearchBar = styled.div`
   justify-content: space-between;
 `;
 
-const SearchBar = () => {
+const SearchBar = ({ onCart }) => {
+  const [showCart, setShowCart] = useState(false);
+
   return (
     <StyledSearchBar>
       <LocationTag />
       <SearchInput />
-      <CartLink />
+      <CartLink onCart={() => setShowCart(!showCart)} />
+      {showCart && <CartMenu />}
     </StyledSearchBar>
   );
 };

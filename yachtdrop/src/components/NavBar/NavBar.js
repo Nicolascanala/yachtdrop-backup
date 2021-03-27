@@ -11,18 +11,24 @@ import ProfileLink from './objects/ProfileLink';
 import SignUpLink from './objects/SignUpLink';
 import YachtdropLogo from '../../objects/YachtdropLogo';
 
-const StyledNavBar = styled.nav`
-  background-color: #03b29a;
-  padding: 5px 25px;
-  width: 100%;
-  justify-content: space-between;
-  top: 0;
-  display: flex;
-  position: fixed;
-  z-index: 10;
-`;
+//import colors
+import { COLORS } from '../../assets/theme/theme';
+
+
 
 const NavBar = () => {
+
+  const StyledNavBar = styled.nav`
+    background-color: ${COLORS.color1};
+    padding: 5px 25px;
+    width: 100%;
+    justify-content: space-between;
+    top: 0;
+    display: flex;
+    position: fixed;
+    z-index: 10;
+  `;
+
   return (
     <StyledNavBar>
       <YachtdropLogo />
