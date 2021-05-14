@@ -1,20 +1,32 @@
 import styled from 'styled-components';
 import { COLORS, FONTS } from '../../../assets/theme/theme';
 
+export const FavStar = styled.img`
+  display: absolute;
+  float: right;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+  cursor: pointer;
+`;
+
 export const TileWrapper = styled.div`
   padding: 5px;
   margin: 20px 10px;
   background-color: ${COLORS.color4};
   display: block;
   width: 160px;
-  cursor: pointer;
   border-radius: 4px;
+
+  &:hover ${FavStar} {
+    visibility: visible;
+  }
 `;
 
 export const PackSize = styled.div`
   float: left;
   position: absolute;
-  background-color: ${COLORS.color1};
+  background-color: ${COLORS.green};
   color: ${COLORS.color5};
   border-radius: 4px;
   padding: 3px;
@@ -29,6 +41,7 @@ export const PackSize = styled.div`
 export const ProductImage = styled.img`
   width: 150px;
   height: 150px;
+  cursor: pointer;
 `;
 
 export const DetailsWrapper = styled.div`

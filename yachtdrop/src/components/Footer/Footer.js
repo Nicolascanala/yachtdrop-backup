@@ -1,35 +1,62 @@
 import React from 'react';
 import styled from 'styled-components';
+import { COLORS } from '@assets/theme/theme';
 
-const FooterWrapper = styled.footer`
-  justify-items: space-between;
-  background-color: #f8694b;
-  padding: 5px 25px;
+const FooterWrapper = styled.div`
   width: 100%;
-  height: 200px;
-  bottom: 0;
+  padding: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  background-color: ${COLORS.orange};
+  align-items: start;
+  justify-content: center;
 `;
 
-const FooterDiv = styled.div`
-  justify-items: space-between;
-  text-align: center;
-  width: 25vw;
-  display: inline-block;
-  color: white;
-  text-transform: uppercase;
-  font-size: 15px;
+const Section = styled.div`
+  margin: 20px 60px;
+  display: flex;
+  flex-flow: column nowrap;
+`;
+
+const SectionTitle = styled.div`
+  margin: 5px 0px;
+  font-size: 20px;
   font-weight: bold;
-  letter-spacing: 2px;
+  cursor: pointer;
+  color: white;
 `;
 
-const Footer = () => {
+const SectionItem = styled.a`
+  color: white;
+  margin: 5px 0px;
+  font-size: 16px;
+  cursor: pointer;
+`;
+
+function Footer() {
   return (
-    <FooterWrapper>
-      <FooterDiv>About</FooterDiv>
-      <FooterDiv>Contact</FooterDiv>
-      <FooterDiv>You Wot?</FooterDiv>
-    </FooterWrapper>
+    <>
+      <FooterWrapper>
+        <Section>
+          <SectionTitle>About Us</SectionTitle>
+          <SectionItem>Story</SectionItem>
+          <SectionItem>Mission</SectionItem>
+          <SectionItem>Testimonials</SectionItem>
+        </Section>
+        <Section>
+          <SectionTitle>Partnerships</SectionTitle>
+          <SectionItem>Become a retial patner</SectionItem>
+          <SectionItem>Become an embassador</SectionItem>
+        </Section>
+        <Section>
+          <SectionTitle>Contact Us</SectionTitle>
+          <SectionItem>Facebook</SectionItem>
+          <SectionItem>Instagram</SectionItem>
+          <SectionItem>Twitter</SectionItem>
+        </Section>
+      </FooterWrapper>
+    </>
   );
-};
+}
 
 export default Footer;

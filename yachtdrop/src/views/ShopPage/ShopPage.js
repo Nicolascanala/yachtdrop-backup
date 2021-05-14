@@ -10,10 +10,8 @@ import CoverBar from '@components/CoverBar/CoverBar';
 import BodyWrapper from '../../objects/BodyWrapper.js';
 import BodyDiv from '../../objects/BodyDiv.js';
 import SortBy from '@components/SortBy/SortBy.js';
-import Footer from '../HomePage/components/Footer/Footer';
-
-// Styled-Components
-const StyledShopPage = styled.div``;
+import Footer from '@components/Footer/Footer';
+import ProductWindow from '@components/ProductWindow/ProductWindow.js';
 
 // MAIN
 const ShopPage = (props) => {
@@ -33,7 +31,9 @@ const ShopPage = (props) => {
   const [priceToggle, setPriceToggle] = useState();
   const [sortButtonState, setSortButtonState] = useState();
 
-  // ******** FETCH PRODUCTS FROM BACKEND ********
+  //RenderStates
+
+  // ******** FETCH PRODUCTS FROM SERVER ********
   // ********************************
   const fetchProducts = async () => {
     const res = await fetch('http://localhost:1337/products');
@@ -41,8 +41,7 @@ const ShopPage = (props) => {
     return data;
   };
 
-
-  // ******** SET PRODUCTS FROM BACKEND **********
+  // ******** SET PRODUCTS FROM SERVER **********
   // ********************************
   useEffect(() => {
     const getProductData = async () => {
@@ -53,6 +52,7 @@ const ShopPage = (props) => {
     getProductData();
   }, []);
 
+  //ROUTING FUNCTIONS
 
   // ******** UPDATES SEARCHBAR FILTER ********
   // ********************************
@@ -69,7 +69,6 @@ const ShopPage = (props) => {
     ],
     [searchInput, productData]
   );
-
 
   // ********************************
   // applyProductFilter() functions: filters an array using another array
@@ -110,7 +109,6 @@ const ShopPage = (props) => {
     }
   };
 
-
   //UPDATES productData ON filterState CHANGE
   // ********************************
   useEffect(() => {
@@ -121,9 +119,7 @@ const ShopPage = (props) => {
     console.log('updated');
   }, [filterArray1, counter]);
 
-
-
-  // Filtering
+  // Filtering (modifies filterState to trigger)
   //********************************
   const clearFilter = () => {
     productFilter.clearTags();
@@ -149,7 +145,6 @@ const ShopPage = (props) => {
       : setFilterArray2(productFilter.otherTags);
     setCounter(counter + 1);
   };
-
 
   // SORTING
   // ********************************
@@ -183,12 +178,11 @@ const ShopPage = (props) => {
     setSortButtonState(tag);
   };
 
-
   // Rendering
   // ********************************
 
   return (
-    <StyledShopPage>
+    <>
       <NavBar />
       <SearchBar setSearchInput={setSearchInput} />
       <BodyWrapper>
@@ -210,7 +204,7 @@ const ShopPage = (props) => {
         </BodyDiv>
       </BodyWrapper>
       <Footer />
-    </StyledShopPage>
+    </>
   );
 };
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+  useCurrentUser,
+  useDispatchCurrentUser,
+} from '@assets/utils/CurrentUser';
 
-const StyledProfileLink = styled.div`
+const StyledProfileLink = styled.a`
   color: white;
   font-family: 'Calibri';
   font-size: 13px;
@@ -25,7 +29,15 @@ const StyledProfileLink = styled.div`
 `;
 
 const ProfileLink = () => {
-  return <StyledProfileLink>Profile</StyledProfileLink>;
+  const user = useCurrentUser();
+
+  return (
+    <>
+      {user.isAuthenticated && (
+        <StyledProfileLink href='/profile'>Profile</StyledProfileLink>
+      )}
+    </>
+  );
 };
 
 export default ProfileLink;

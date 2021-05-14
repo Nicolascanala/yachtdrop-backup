@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //import styles
 import { GridWrapper } from './ProductGrid.style';
@@ -20,6 +20,7 @@ const ProductGrid = (props) => {
       <GridWrapper>
         {props.products.map((product, index) => (
           <ProductTile
+            id={product.id}
             key={index}
             name={product.product_name}
             description={product.product_description}

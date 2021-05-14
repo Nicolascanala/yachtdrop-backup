@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //import GlobalStyles from './styles/global';
@@ -9,10 +9,14 @@ import AboutUs from './views/AboutUs/AboutUs';
 import ContactUs from './views/ContactUs/ContactUs';
 import Embassador from './views/Embassador/Embassador';
 import SignUp from './views/SignUp/SignUp';
-import SignIn from './views/SignIn/SignIn';
-import Login from './views/SignIn/Login';
+import LogIn from './views/LogIn/LogIn';
+import NewLogIn from '@views/LogIn/NewLogIn';
+import Profile from '@views/Profile/Profile';
 
 function App() {
+  //filter object for generating an array of filter tags: primaryTag, secondaryTag, otherTags
+  //exclusive tags such as primaryTag and secondaryTag toggle between various tag
+  //otherTags contains tags that are inclusive of eachother
   class Filter {
     constructor() {
       this.primaryTag = [];
@@ -60,7 +64,6 @@ function App() {
       return console.log('tags were cleared');
     }
   }
-
   const productFilter = new Filter();
 
   return (
@@ -73,22 +76,25 @@ function App() {
           <ShopPage productFilter={productFilter} />
         </Route>
         <Route path='/signup'>
-          <SignUp />
+          <SignUp productFilter={productFilter} />
         </Route>
         <Route path='/login'>
-          <Login />
+          <LogIn productFilter={productFilter} />
         </Route>
-        <Route path='/signin'>
-          <SignIn />
+        <Route path='/newlogin'>
+          <NewLogIn productFilter={productFilter} />
         </Route>
         <Route path='/aboutus'>
-          <AboutUs />
+          <AboutUs productFilter={productFilter} />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
         </Route>
         <Route path='/contactus'>
-          <ContactUs />
+          <ContactUs productFilter={productFilter} />
         </Route>
-        <Route path='/Embassador'>
-          <Embassador />
+        <Route path='/embassador'>
+          <Embassador productFilter={productFilter} />
         </Route>
       </Switch>
     </Router>

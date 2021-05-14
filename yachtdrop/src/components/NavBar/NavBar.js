@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // IMPORT COMPONENTS
@@ -10,6 +10,7 @@ import LoginLink from './objects/LoginLink';
 import ProfileLink from './objects/ProfileLink';
 import SignUpLink from './objects/SignUpLink';
 import YachtdropLogo from '../../objects/YachtdropLogo';
+import LogOutButton from '@objects/LogOutButton';
 
 //import colors
 import { COLORS } from '../../assets/theme/theme';
@@ -25,21 +26,24 @@ const StyledNavBar = styled.nav`
   z-index: 10;
 `;
 
-const NavBar = ({ filteredProducts }) => {
+const NavBar = (props) => {
+  const productFilter = props.productFilter;
+
   return (
     <StyledNavBar>
       <YachtdropLogo />
       <NavMenu>
-        <MenuLink>All</MenuLink>
-        <MenuLink>Wine</MenuLink>
-        <MenuLink>Spirits</MenuLink>
-        <MenuLink>Beer</MenuLink>
-        <MenuLink>Other</MenuLink>
+        <MenuLink href='/shoppage'>All</MenuLink>
+        <MenuLink href='/shoppage'>Wine</MenuLink>
+        <MenuLink href='/shoppage'>Spirits</MenuLink>
+        <MenuLink href='/shoppage'>Beer</MenuLink>
+        <MenuLink href='/shoppage'>Other</MenuLink>
       </NavMenu>
       <NavAdmin>
         <LoginLink />
         <ProfileLink />
         <SignUpLink />
+        <LogOutButton />
       </NavAdmin>
     </StyledNavBar>
   );
