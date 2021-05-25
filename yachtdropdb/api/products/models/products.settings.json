@@ -11,18 +11,18 @@
     "draftAndPublish": false
   },
   "attributes": {
-    "product_name": {
+    "display": {
       "type": "string",
       "required": true
     },
-    "product_description": {
+    "subDisplay": {
       "type": "string"
     },
     "featured": {
       "type": "boolean",
       "default": true
     },
-    "product_img": {
+    "productImg": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
@@ -33,30 +33,43 @@
       "plugin": "upload",
       "required": false
     },
-    "product_price": {
+    "price": {
       "type": "decimal",
       "default": 1,
       "min": 0
     },
-    "categories": {
-      "type": "json"
-    },
-    "pack_size": {
+    "packSize": {
       "type": "integer",
       "default": 1,
       "required": true
     },
-    "unit_size": {
+    "unitVolume": {
       "type": "string"
     },
     "vintage": {
       "type": "biginteger"
     },
-    "product_format": {
+    "packageType": {
       "type": "string"
     },
-    "supplier_product_id": {
-      "type": "string"
+    "supplier": {
+      "model": "suppliers",
+      "via": "products"
+    },
+    "fullDescription": {
+      "type": "text"
+    },
+    "port": {
+      "model": "ports"
+    },
+    "category": {
+      "model": "categories"
+    },
+    "sub_category": {
+      "model": "sub-categories"
+    },
+    "category_tags": {
+      "collection": "category-tags"
     }
   }
 }

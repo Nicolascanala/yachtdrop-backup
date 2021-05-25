@@ -22,24 +22,30 @@
       "default": "cart",
       "required": true
     },
-    "order_id": {
+    "orderId": {
       "type": "string",
       "required": true
     },
-    "products": {
-      "type": "json"
-    },
-    "transaction_id": {
+    "transactionId": {
       "type": "string"
     },
-    "user": {
-      "type": "string"
-    },
-    "order_datetime": {
+    "orderDatetime": {
       "type": "datetime"
     },
-    "expected_delivery": {
+    "expectedDelivery": {
       "type": "datetime"
+    },
+    "usersPermissionsUser": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "transaction": {
+      "model": "transactions",
+      "via": "order"
+    },
+    "vessel": {
+      "model": "vessels",
+      "via": "orders"
     }
   }
 }

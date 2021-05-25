@@ -29,20 +29,7 @@ const JoinInput = styled.input`
     width: 40%;
     height: 10%;
     text-align: center;
-/*     border-bottom: none;
- */    border-top: none;
-    border-right: none;
 `;
-
-const SubmitButton = styled.button`
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 5px;
-    background-color: lightblue;
-    color: black;
-    font-size: 18px;
-`;
-
 
 const List = () => {
     const [first_name, setFirst_name] = useState('');
@@ -77,7 +64,7 @@ const List = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
             />
-            <SubmitButton type="submit">Submit</SubmitButton>
+            <button type="submit">Submit</button>
         </ListWrapper>
     )
 }

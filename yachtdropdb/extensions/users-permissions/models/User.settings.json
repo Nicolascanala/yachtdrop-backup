@@ -59,11 +59,21 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "vesselName": {
+    "vessels": {
+      "collection": "vessels",
+      "via": "users_permissions_users"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
       "type": "string"
     },
     "favouriteProducts": {
-      "type": "json"
+      "collection": "products"
+    },
+    "userContactNumber": {
+      "type": "biginteger"
     }
   }
 }

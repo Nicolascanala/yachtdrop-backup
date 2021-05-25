@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledBodyWrapper = styled.body`
-  padding-top: 95px;
   background-color: white;
   width: 100%;
   height: auto;
+  min-height: 85vh;
   display: flex;
   flex-flow: row nowrap;
 `;

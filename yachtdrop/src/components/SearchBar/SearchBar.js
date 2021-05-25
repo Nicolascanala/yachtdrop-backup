@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import History from '@components/History';
 
 // IMPORT OBJECTS
 import LocationTag from './objects/LocationTag';
 //import SearchInput from './objects/SearchInput';
 import CartLink from './objects/CartLink';
-import CartMenu from '@components/CartMenu/CartMenu';
+import CartBar from '@components/CartBar/CartBar';
 
 const SearchInput = styled.input`
   padding: 5px;
@@ -25,12 +26,12 @@ const SearchInput = styled.input`
 `;
 
 const StyledSearchBar = styled.div`
-  margin-top: 52px;
   padding: 0px 25px;
   width: 100vw;
   background-color: white;
   display: flex;
-  position: fixed;
+  position: sticky;
+  top: 52px;
   width: 100%;
   z-index: 9;
   box-shadow: 0px 0px 7px;
@@ -51,7 +52,7 @@ const SearchBar = (props) => {
         />
       )}
       <CartLink onCart={() => setShowCart(!showCart)} />
-      {showCart && <CartMenu />}
+      <CartBar cartItems={props.products} showCart={showCart} />
     </StyledSearchBar>
   );
 };

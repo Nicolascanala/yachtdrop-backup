@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import NavBar from '@components/NavBar/NavBar';
-import Footer from '@components/Footer/Footer';
 import { COLORS } from '@assets/theme/theme';
 import BG from '@assets/img/sea.jpg';
 import {
@@ -9,9 +7,9 @@ import {
   useDispatchCurrentUser,
 } from '@assets/utils/CurrentUser';
 import SearchBar from '@components/SearchBar/SearchBar';
+import axios from 'axios';
 
 const BodyWrapper = styled.div`
-  margin-top: 95px;
   display: flex;
   width: 100%;
   flex-flow: column nowrap;
@@ -128,6 +126,8 @@ const Message = styled.span`
 
 const SignUp = () => {
   const [first_name, setFirst_name] = useState('');
+  const [surname, setSurname] = useState('');
+  const [username, setUsername] = useState('');
   const [user_email, setUser_email] = useState('');
   const [user_password, setUser_password] = useState('');
   const [repeat_password, setRepeat_password] = useState('');
@@ -135,21 +135,20 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const mailing = {
-        username: first_name, 
-        email: user_email, 
-        password: user_password};
-
-    fetch('http://localhost:1337/auth/local/register', {
-        method: 'POST',
-        headers: { 
-            "Accept": "application/json",
-            "Content-Type": "application/json" 
-        },
-        body: JSON.stringify(mailing)
-    }).then(() => {
-      console.log('new user added');
-    });
+    axios
+      .post('http://localhost:1337/auth/local/register', {
+        firstName: first_name,
+        lastName: surname,
+        username: username,
+        email: user_email,
+        password: user_password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     setRedirect(true);
   };
 
@@ -167,22 +166,39 @@ const SignUp = () => {
 
   return (
     <>
-      <NavBar />
-      <SearchBar disabled={true} />
+      {/* <SearchBar disabled={true} /> */}
       <BodyWrapper>
         <Container>
-          <FormContainer action={"/signup"} method={"POST"} onSubmit={handleSubmit}>
+          <FormContainer
+            action={'/signup'}
+            method={'POST'}
+            onSubmit={handleSubmit}
+          >
             <PageTitle>Sign Up</PageTitle>
-            <Label>Full Name</Label>
+            <Label>First Name</Label>
             <StyledInput
               type='text'
               placeholder='Name'
               value={first_name}
               onChange={(e) => setFirst_name(e.target.value)}
             />
+            <Label>Surname</Label>
+            <StyledInput
+              type='text'
+              placeholder='Surname'
+              value={surname}
+              onChange={(e) => setSurname(e.target.value)}
+            />
+            <Label>User Name</Label>
+            <StyledInput
+              type='text'
+              placeholder='Username'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
             <Label>Email:</Label>
             <StyledInput
-              type='email' 
+              type='email'
               placeholder='Email'
               value={user_email}
               onChange={(e) => setUser_email(e.target.value)}
@@ -194,7 +210,7 @@ const SignUp = () => {
               )}
             </Label>
             <StyledInput
-              type='password' 
+              type='password'
               placeholder='Password'
               value={user_password}
               onChange={(e) => setUser_password(e.target.value)}
@@ -222,7 +238,6 @@ const SignUp = () => {
           </ContentContainer>
         </Container>
       </BodyWrapper>
-      <Footer />
     </>
   );
 };

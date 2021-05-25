@@ -13,7 +13,7 @@ import YachtdropLogo from '../../objects/YachtdropLogo';
 import LogOutButton from '@objects/LogOutButton';
 
 //import colors
-import { COLORS } from '../../assets/theme/theme';
+import { COLORS } from '@assets/theme/theme';
 
 const StyledNavBar = styled.nav`
   background-color: ${COLORS.green};
@@ -22,23 +22,23 @@ const StyledNavBar = styled.nav`
   justify-content: space-between;
   top: 0;
   display: flex;
-  position: fixed;
+  position: sticky;
   z-index: 10;
 `;
 
 const NavBar = (props) => {
-  const productFilter = props.productFilter;
-
   return (
     <StyledNavBar>
       <YachtdropLogo />
-      <NavMenu>
-        <MenuLink href='/shoppage'>All</MenuLink>
-        <MenuLink href='/shoppage'>Wine</MenuLink>
-        <MenuLink href='/shoppage'>Spirits</MenuLink>
-        <MenuLink href='/shoppage'>Beer</MenuLink>
-        <MenuLink href='/shoppage'>Other</MenuLink>
-      </NavMenu>
+      {window.location.href != 'http://localhost:3000/' && (
+        <NavMenu>
+          <MenuLink href='/shoppage'>All</MenuLink>
+          <MenuLink href='/shoppage/products?category.category=wine'>Wine</MenuLink>
+          <MenuLink href='/shoppage/products?category.category=spirit'>Spirits</MenuLink>
+          <MenuLink href='/shoppage/products?category.category=beer'>Beer</MenuLink>
+          <MenuLink href='/shoppage'>Other</MenuLink>
+        </NavMenu>
+      )}
       <NavAdmin>
         <LoginLink />
         <ProfileLink />
