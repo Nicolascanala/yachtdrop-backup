@@ -8,7 +8,7 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "users_permissions_users": {
@@ -16,10 +16,6 @@
       "plugin": "users-permissions",
       "collection": "user",
       "dominant": true
-    },
-    "orders": {
-      "via": "vessel",
-      "collection": "orders"
     },
     "vessel_name": {
       "type": "string",

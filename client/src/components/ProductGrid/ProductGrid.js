@@ -1,18 +1,30 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import styled from 'styled-components';
+import { COLORS } from '@assets/theme/theme';
 
 //import styles
-import { GridWrapper } from './ProductGrid.style';
-import styled from 'styled-components';
 
 //import objects
 import ProductTile from '@components/ProductTile/ProductTile';
 
+const GridWrapper = styled.div`
+  min-height: 70vh;
+  background-color: ${COLORS.color5};
+  padding: 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  @media (max-width: 960px) {
+    padding: 0 auto;
+  }
+`;
+
 const ProductGrid = (props) => {
   return (
     <GridWrapper>
-      {props.products.map((product) => (
+      {props.products.map((product, index) => (
         <ProductTile
+          key={index}
           id={product.id}
           fullDescription={product.fullDescription}
           display={product.display}

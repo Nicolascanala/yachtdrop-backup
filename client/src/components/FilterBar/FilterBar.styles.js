@@ -2,8 +2,9 @@ import { COLORS } from '@assets/theme/theme';
 import styled from 'styled-components';
 
 export const FilterGrid = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
   justify-content: left;
-  height: 100%;
   width: 100%;
   background-color: #f8faf7;
   padding: 30px;
@@ -11,7 +12,6 @@ export const FilterGrid = styled.div`
   font-size: 15px;
   font-weight: bold;
   letter-spacing: 2px;
-  border-right: 3px solid black;
 `;
 
 export const PrimarySection = styled.div`
@@ -32,8 +32,11 @@ export const FilterTitle = styled.h1`
 `;
 
 export const BlackSection = styled.div`
+  display: flex;
   background-color: black;
   height: 19px;
+  width: 100%;
+  z-index: 4;
 `;
 
 export const CategoryList = styled.div`

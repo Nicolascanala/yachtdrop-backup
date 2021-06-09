@@ -1,16 +1,13 @@
-import React, { useContext, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import History from '@components/History';
-
-//import GlobalStyles from './styles/global';
 
 //COMPONENTS
 import NavBar from '@components/NavBar/NavBar';
 import Footer from '@components/Footer/Footer';
-
 import ShopPage from './views/ShopPage/ShopPage';
 import LandingPage from '@views/LandingPage/LandingPage';
+import LandingPage2 from '@views/LandingPage2/LandingPage2';
 import AboutUs from './views/AboutUs/AboutUs';
 import ContactUs from './views/ContactUs/ContactUs';
 import Embassador from './views/Embassador/Embassador';
@@ -18,6 +15,8 @@ import SignUp from './views/SignUp/SignUp';
 import LogIn from './views/LogIn/LogIn';
 import NewLogIn from '@views/LogIn/NewLogIn';
 import Profile from '@views/Profile/Profile';
+import Checkout from '@views/Checkout/Checkout';
+import OrderConfirmation from '@views/OrderConfirmation/OrderConfirmation';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -37,11 +36,14 @@ function App() {
 
   return (
     <AppWrapper>
-      <NavBar />
+      {window.location.href !== 'http://localhost:3000/' && <NavBar />}
       <Router history={History}>
         <Switch>
           <Route exact path='/'>
             <LandingPage />
+          </Route>
+          <Route exact path='/landingpage2'>
+            <LandingPage2 />
           </Route>
           <Route path='/shoppage'>
             <ShopPage />
@@ -60,6 +62,12 @@ function App() {
           </Route>
           <Route path='/profile'>
             <Profile />
+          </Route>
+          <Route path='/checkout'>
+            <Checkout />
+          </Route>
+          <Route path='/order-confirmation'>
+            <OrderConfirmation />
           </Route>
           <Route path='/contactus'>
             <ContactUs />

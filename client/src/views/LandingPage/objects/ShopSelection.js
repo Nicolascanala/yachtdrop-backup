@@ -2,78 +2,66 @@ import React from 'react';
 import styled from 'styled-components';
 import LOGO from '@assets/img/yd-logo-black.png';
 import { keyframes } from 'styled-components';
-
-const popUp = keyframes`
-from {
-  width: 0;
-  height: 0;
-}
-to {
-  width: 50px;
-  height: 50px;
-}
-`;
+import { COLORS } from '@assets/theme/theme';
 
 const Wrapper = styled.div`
+  z-index: 3;
   display: flex;
-  position: relative;
+  position: absolute;
   flex-flow: column wrap;
   align-self: center;
   justify-content: center;
   align-items: center;
   background-color: white;
-  padding: 20px;
+  margin: 0;
+  padding: 18px;
   border-radius: 10px;
-  transform: translateY(-100px);
+  transform: translateY(35vw);
   @media (max-width: 900px) {
-    transform: translateY(-150px);
+    transform: translateY(35vw);
   }
 `;
 
-const Content = styled.p`
-  font-size: 20px;
-  color: black;
+const Title = styled.p`
+  font-size: 24px;
+  color: ${COLORS.orange};
   display: flex;
-  padding: 20px;
+  margin: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
-  margin-top: 15px;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 100px;
   @media (max-width: 900px) {
-    flex-flow: column nowrap;
+    margin: 10px;
   }
 `;
 
-//on hover yd icon
-const YD = styled.img`
-  position: relative;
-  width: 50px;
-  height: 50px;
-  margin: auto;
-`;
-
 const Button = styled.a`
-  background-color: #f8694b;
+  background-color: ${COLORS.green};
   color: white;
   font-family: 'Calibri';
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
   padding: 8px 20px;
-  margin: 5px 10px;
+  margin: 5px;
   border-radius: 10px;
   cursor: pointer;
   align-self: center;
   text-decoration: none;
   transition: all 0.2s;
-  transform: scale(0.9);
   &:hover {
     opacity: 0.8;
-    transform: scale(1);
+    transform: scale(1.05);
   }
 `;
 
@@ -85,13 +73,24 @@ const Caption = styled.div`
   font-weight: bold;
   letter-spacing: 1px;
   color: white;
-  transform: translateY(80px);
+  transform: translateY(90px);
+`;
+
+const Subtitle = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: black;
+  transform: translateY(20px);
 `;
 
 const ShopSelection = () => {
   return (
     <Wrapper>
-      <Content>Select your Drop Port!</Content>
+      <Title>Order drinks to your yacht.</Title>
+
       <ButtonContainer>
         <Button href='/shoppage'>Mallorca</Button>
         <Button href='/shoppage'>Croaticia</Button>
@@ -99,7 +98,8 @@ const ShopSelection = () => {
         <Button href='/shoppage'>Menorca</Button>
         <Button href='/shoppage'>Monte Negro</Button>
       </ButtonContainer>
-      <Caption>Drinks delivery to where ever you are.</Caption>
+      <Subtitle>Select your location!</Subtitle>
+      <Caption>Drinks delivery in 24 hours.</Caption>
     </Wrapper>
   );
 };

@@ -8,16 +8,12 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "users_permissions_user": {
       "plugin": "users-permissions",
       "model": "user"
-    },
-    "order": {
-      "via": "transaction",
-      "model": "orders"
     },
     "transaction_id": {
       "type": "string"

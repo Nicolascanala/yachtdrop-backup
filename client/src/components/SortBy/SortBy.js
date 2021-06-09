@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../assets/theme/theme';
+import axios from 'axios';
+import { useCurrentUser } from '@assets/utils/CurrentUser';
 
 const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
+`;
+
+const ButtonsContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  background-color: white;
+  color: black;
+  width: 100%;
+  padding: 10px;
+  align-items: center;
 `;
 
 const Tag = styled.a`
@@ -24,16 +35,6 @@ const Tag = styled.a`
   &:hover {
     opacity: 0.8;
   }
-`;
-
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  background-color: white;
-  color: black;
-  width: 100%;
-  padding: 10px;
-  align-items: center;
 `;
 
 const SortTitle = styled.div`
@@ -72,7 +73,33 @@ const SortButton = styled.a`
   }
 `;
 
+const FavButton = styled.a`
+  background-color: ${(props) =>
+    props.checkFav() ? COLORS.purple : COLORS.orange};
+  color: white;
+  padding: 5px 20px;
+  margin: 5px 10px;
+  font-family: 'Calibri';
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  align-self: space-between;
+  display: flex;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
 const SortBy = (props) => {
+  const user = useCurrentUser();
+
   class ParamsFilter {
     constructor(queryString) {
       this.input = queryString;
@@ -171,6 +198,10 @@ const SortBy = (props) => {
     return params.sort == value;
   };
 
+  const checkFav = (value) => {
+    return document.location.search == '?favourites' ? true : false;
+  };
+
   const SelectedTags = () => {
     const params = new ParamsFilter(document.location.search);
     return params.categoryTags;
@@ -180,6 +211,19 @@ const SortBy = (props) => {
     const params = new ParamsFilter(document.location.search);
     params.setCategoryTag(value);
     return params.getQueryString();
+  };
+
+  const getFavsQuery = async () => {
+    const res = await axios.get('http://localhost:1337/users/me', {
+      withCredentials: true,
+    });
+    const data = await res.data.favouriteProducts;
+
+    let result = '';
+    data.favouriteProducts.forEach(
+      (id) => (result = result.concat(`id=${id}&`))
+    );
+    return result;
   };
 
   return (
@@ -206,6 +250,17 @@ const SortBy = (props) => {
           Price {checkSort('price:ASC') ? '△' : ''}
           {checkSort('price:DESC') ? '▽' : ''}
         </SortButton>
+        {user.isAuthenticated && (
+          <FavButton
+            color='#03b29a'
+            field1='price:ASC'
+            field2='price:DESC'
+            checkFav={checkFav}
+            href={checkFav() ? '/shoppage/' : '/shoppage/products?favourites'}
+          >
+            Favourites
+          </FavButton>
+        )}
       </ButtonsContainer>
       <ButtonsContainer>
         {SelectedTags() != null &&
